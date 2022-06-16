@@ -19,10 +19,10 @@ export function get (url, params) {
       })
   })
 }
-export function post (url, params,type = 'json') {
+export function post (url, params, type = 'json') {
   return new Promise((resolve, reject) => {
-    axios.post(url, params,{
-      responseType: type,
+    axios.post(url, params, {
+      responseType: type
     })
       .then(response => {
         // 处理逻辑

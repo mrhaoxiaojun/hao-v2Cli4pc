@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition :name="transitionName" >
+    <transition :name="transitionName" mode="out-in">
       <keep-alive :include="/^[\w\W]*_keepAlive$/">
         <router-view  class="child-view"></router-view>
       </keep-alive>
@@ -22,13 +22,13 @@ export default {
   },
   // 监听路由的路径，可以通过不同的路径去选择不同的切换效果
   watch: {
-    '$route' (to, from) {
-      if (to.path === '/') {
-        this.transitionName = 'slide-right'
-      } else {
-        this.transitionName = 'slide-left'
-      }
-    }
+    // '$route' (to, from) {
+    //   if (to.path === '/') {
+    //     this.transitionName = 'slide-right'
+    //   } else {
+    //     this.transitionName = 'slide-left'
+    //   }
+    // }
   }
 }
 </script>
@@ -46,14 +46,23 @@ export default {
   height: auto;
   transition: all .5s;
 }
-.slide-left-enter, .slide-right-leave-active {
-  opacity: 0;
-  -webkit-transform: translate(30px, 0);
-  transform: translate(30px, 0);
+// .slide-left-enter, .slide-right-leave-active {
+//   opacity: 0;
+//   -webkit-transform: translate(30px, 0);
+//   transform: translate(30px, 0);
+// }
+// .slide-left-leave-active, .slide-right-enter {
+//   opacity: 0;
+//   -webkit-transform: translate(-30px, 0);
+//   transform: translate(-30px, 0);
+// }
+
+.slide-left-enter-active,.slide-left-leave-active{
+  // transform: translate(30px, 0);
+  // transform: translateY(0px);
 }
-.slide-left-leave-active, .slide-right-enter {
+.slide-left-enter,.slide-left-leave-to{
+  transform: all 600ms;
   opacity: 0;
-  -webkit-transform: translate(-30px, 0);
-  transform: translate(-30px, 0);
 }
 </style>
